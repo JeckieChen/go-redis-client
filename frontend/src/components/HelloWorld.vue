@@ -2,6 +2,7 @@
 import {reactive, ref} from 'vue'
 import {Greet} from '../../wailsjs/go/main/App'
 import {ConnectionList} from '../../wailsjs/go/main/App'
+import {ConnectionCreate} from '../../wailsjs/go/main/App'
 
 const data = reactive({
   name: "",
@@ -10,15 +11,19 @@ const data = reactive({
 
 let code = ref() 
 let list = ref()
+let createRes = ref()
 
 function greet() {
+  ConnectionCreate({"addr": "localhost"}).then(res=>{
+    createRes.value = res
+  })
   ConnectionList().then(res =>{
     code.value =res.code
     list.value = res.data
   })
-  Greet(data.name).then(result => {
-    data.resultText = result
-  })
+  // Greet(data.name).then(result => {
+  //   data.resultText = result
+  // })
 }
 
 </script>
@@ -31,6 +36,7 @@ function greet() {
       <button class="btn" @click="greet">Greet</button>
       <div>code : {{ code }}</div>
       <div>list : {{ list }}</div>
+      <div>CreateRes : {{ createRes }}</div>
     </div>
   </main>
 </template>

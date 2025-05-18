@@ -12,5 +12,5 @@ type Connection struct {
 }
 
 type Config struct {
-	Connection []*Connection `json:"connections"`
+	Connections []*Connection `json:"connections"`
 }

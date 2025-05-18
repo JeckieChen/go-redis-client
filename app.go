@@ -43,7 +43,14 @@ func (a *App) ConnectionList(name string) H {
 }
 
 // ConnectionCreate 新建连接
-func (a *App) ConnectionCreate(Connection *define.Connection) H {
+func (a *App) ConnectionCreate(connection *define.Connection) H {
+	err := service.ConnectionCreate(connection)
+	if err != nil {
+		return M{
+			"code": -1,
+			"msg":  "ERROR : " + err.Error(),
+		}
+	}
 	return M{
 		"code": 200,
 		"msg":  "connection success",
