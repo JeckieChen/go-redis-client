@@ -6,8 +6,24 @@ export function ConnectionCreate(arg1) {
   return window['go']['main']['App']['ConnectionCreate'](arg1);
 }
 
+export function ConnectionDelete(arg1) {
+  return window['go']['main']['App']['ConnectionDelete'](arg1);
+}
+
+export function ConnectionEdit(arg1) {
+  return window['go']['main']['App']['ConnectionEdit'](arg1);
+}
+
 export function ConnectionList(arg1) {
   return window['go']['main']['App']['ConnectionList'](arg1);
+}
+
+export function DbInfo(arg1) {
+  return window['go']['main']['App']['DbInfo'](arg1);
+}
+
+export function DbList(arg1) {
+  return window['go']['main']['App']['DbList'](arg1);
 }
 
 export function Greet(arg1) {
