@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"net"
 	"os"
-	"os/user"
 	"time"
 
 	"github.com/go-redis/redis/v8"
@@ -35,8 +34,10 @@ func GetConnection(identity string) (*define.Connection, error) {
 }
 
 func GetConfPath() string {
-	current, _ := user.Current()
-	return current.HomeDir
+	// current, _ := user.Current()
+	// return current.HomeDir
+	nowPath, _ := os.Getwd()
+	return nowPath
 }
 
 func getSSHClient(username, password, addr string) (*ssh.Client, error) {

@@ -2,9 +2,9 @@
 import ConnectionList from "./components/ConnectionList.vue";
 import ConnectionManage from "./components/ConnectionManage.vue";
 import {ref} from "vue";
-import {DbList} from "../wailsjs/go/main/App.js";
-// import Keys from "./components/Keys.vue";
-// import KeyValue from "./components/KeyValue.vue";
+import {DbList, KeyList} from "../wailsjs/go/main/App.js";
+import Keys from "./components/Keys.vue";
+import KeyValue from "./components/KeyValue.vue";
 
 let flushFlag = ref(true)
 let keyDB = ref()
@@ -36,12 +36,12 @@ function selectKey(key) {
       </div>
       <ConnectionList @emit-select-db="selectDB" :flush="flushFlag"/>
     </el-col>
-    <!-- <el-col :span="7" style="padding: 12px">
+    <el-col :span="7" style="padding: 12px">
       <Keys :keyDB="keyDB" :keyConnIdentity="keyConnIdentity" @emit-select-key="selectKey"/>
     </el-col>
     <el-col :span="12" style="padding: 12px">
       <KeyValue :keyDB="keyDB" :keyConnIdentity="keyConnIdentity" :keyKey="keyKey" />
-    </el-col> -->
+    </el-col>
   </el-row>
 </template>
 

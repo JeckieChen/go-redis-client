@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"go-redis-client/internal/define"
+	"go-redis-client/internal/helper"
 	"io/ioutil"
 	"os"
 
@@ -11,7 +12,7 @@ import (
 )
 
 func ConnectionList() ([]*define.Connection, error) {
-	nowPath, _ := os.Getwd()
+	nowPath := helper.GetConfPath()
 	data, err := ioutil.ReadFile(nowPath + string(os.PathSeparator) + define.ConfigName)
 	if errors.Is(err, os.ErrNotExist) {
 		return nil, err
@@ -37,7 +38,7 @@ func ConnectionCreate(conn *define.Connection) error {
 	}
 	conn.Identity = uuid.NewV4().String()
 	conf := new(define.Config)
-	nowPath, _ := os.Getwd()
+	nowPath := helper.GetConfPath()
 	data, err := ioutil.ReadFile(nowPath + string(os.PathSeparator) + define.ConfigName)
 	if errors.Is(err, os.ErrNotExist) {
 		// 配置文件的内容初始化
@@ -69,8 +70,7 @@ func ConnectionEdit(conn *define.Connection) error {
 		conn.Port = "6379"
 	}
 	conf := new(define.Config)
-	// nowPath := helper.GetConfPath()
-	nowPath, _ := os.Getwd()
+	nowPath := helper.GetConfPath()
 	data, err := ioutil.ReadFile(nowPath + string(os.PathSeparator) + define.ConfigName)
 	if err != nil {
 		return err
@@ -93,8 +93,7 @@ func ConnectionDelete(identity string) error {
 		return errors.New("identity can't null")
 	}
 	conf := new(define.Config)
-	// nowPath := helper.GetConfPath()
-	nowPath, _ := os.Getwd()
+	nowPath := helper.GetConfPath()
 	data, err := ioutil.ReadFile(nowPath + string(os.PathSeparator) + define.ConfigName)
 	if err != nil {
 		return err
